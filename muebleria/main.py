@@ -9,7 +9,12 @@ silla = Silla("Cuero sintetico", 411621, 4) # 4 patas
 mesa = Mesa("Madera", 508057, 46, 101) # 46x101 cm
 armario = Armario("MDP", 749900, 3) # 3 puertas
 
-# Imprimiendo datos de los objetos en cadena de texto
-print(silla)
+# Imprime datos de los objetos en cadena de texto
+# print(silla)
 # print(mesa)
 # print(armario)
+
+# Imprime datos de los objetos en una tabla estetica
+silla.mostrar_info_rich()
+mesa.mostrar_info_rich()
+armario.mostrar_info_rich()

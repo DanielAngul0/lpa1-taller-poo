@@ -1,6 +1,10 @@
 # Importando la clase abstracta 'Mueble'
 from mueble import Mueble # Obtiene los atributos material, precio y el metodo abstracto
 
+# Importando la libreria 'Rich'
+from rich.console import Console # Encargado de imprimir en la consola en un formato enriquecido   
+from rich.table import Table # Permite crear tablas con bordes y colores
+
 # --- Subclase de Mueble, relacionada con las mesas ---
 class Mesa(Mueble):
     def __init__(self, material, precio, ancho, largo):
@@ -18,3 +22,22 @@ class Mesa(Mueble):
 Ancho: {self.ancho} cm 
 Largo: {self.largo} cm
 Precio final: $ {self.calcular_precio_final():.2f}"""
+
+    # Funcion para crear una tabla estetica de Rich para mostrarla en consola
+    def mostrar_info_rich(self):
+        consola = Console() # Renderizado inicial de la tabla
+
+        # Creando titulo para la clase 'Mesa' y columnas de la tabla con estetica
+        tabla = Table(title="Informacion de la Mesa", style='white')
+        tabla.add_column("Atributo", style='#FF0000')
+        tabla.add_column("Valor", style='#7F1313')
+
+        # Creando filas de la tabla y añadiendo atributos especificos y metodos abstractos en formato string
+        tabla.add_row("Material", self.material)
+        tabla.add_row("Precio base", f"$ {self.precio}")
+        tabla.add_row("Ancho", str(self.ancho) + " cm")
+        tabla.add_row("Largo", str(self.largo) + " cm")
+        tabla.add_row("Precio final", f"$ {self.calcular_precio_final():.2f}")
+
+        # Renderizado final de la tabla
+        consola.print(tabla)
