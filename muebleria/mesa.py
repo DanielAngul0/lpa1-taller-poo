@@ -1,5 +1,5 @@
 # Importando la clase abstracta 'Mueble'
-from mueble import Mueble # Obtiene los atributos material, precio y el metodo abstracto
+from muebleria.mueble import Mueble # Obtiene los atributos material, precio y el metodo abstracto
 
 # Importando la libreria 'Rich'
 from rich.console import Console # Encargado de imprimir en la consola en un formato enriquecido   
@@ -8,6 +8,11 @@ from rich.table import Table # Permite crear tablas con bordes y colores
 # --- Subclase de Mueble, relacionada con las mesas ---
 class Mesa(Mueble):
     def __init__(self, material, precio, ancho, largo):
+        
+        # Validación de precio positivo
+        if precio <= 0:
+            raise ValueError("El precio debe ser un valor positivo")
+        
         super().__init__(material, precio) # Obtiene los atributos del padre
         self.ancho = ancho # Asigna el ancho de la mesa
         self.largo = largo # Asigna el largo de la mesa
@@ -41,3 +46,6 @@ Precio final: $ {self.calcular_precio_final():.2f}"""
 
         # Renderizado final de la tabla
         consola.print(tabla)
+        
+        
+            

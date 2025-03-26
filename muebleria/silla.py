@@ -1,5 +1,5 @@
 # Importando la clase abstracta 'Mueble'
-from mueble import Mueble # Obtiene los atributos material, precio y el metodo abstracto
+from muebleria.mueble import Mueble # Obtiene los atributos material, precio y el metodo abstracto
 
 # Importando la libreria 'Rich'
 from rich.console import Console # Encargado de imprimir en la consola en un formato enriquecido   
@@ -8,6 +8,15 @@ from rich.table import Table # Permite crear tablas con bordes y colores
 # --- Subclase de Mueble, relacionada con las sillas ---
 class Silla(Mueble):
     def __init__(self, material, precio, num_patas):
+        
+        # Validación de número de patas
+        if num_patas <= 0:
+            raise ValueError("El número de patas debe ser mayor que cero")
+        
+        # Validación de precio positivo
+        if precio <= 0:
+            raise ValueError("El precio debe ser un valor positivo")
+        
         super().__init__(material, precio) # Obtiene los atributos del padre
         self.num_patas = num_patas # Asigna el numero de patas de la silla
 
