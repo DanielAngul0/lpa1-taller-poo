@@ -21,9 +21,8 @@ class Silla(Mueble):
         self.num_patas = num_patas # Asigna el numero de patas de la silla
 
     # Metodo abstracto especifico para la clase Silla
-    def calcular_precio_final(self):
-        precio_aumentado = self.precio * 1.32 # Precio base aumentado un 32%
-        return precio_aumentado * (1 - self.descuento / 100) # Descuento aplicado
+    def calcular_precio_base(self):
+        return self.precio * 1.32 # Precio base aumentado un 32%
 
     # Obtiene la informacion de la clase padre 'Mueble', los atributos especificos de la subclase 'Silla' y el resultado del metodo abstracto y lo convierte en un formato string legible
     def __str__(self):
@@ -41,10 +40,11 @@ Precio final: $ {self.calcular_precio_final():.2f}"""
         tabla.add_column("Valor", style='#005DF4')
 
         # Creando filas de la tabla y añadiendo atributos especificos y metodos abstractos en formato string
-        tabla.add_row("Material", self.material)
-        tabla.add_row("Precio base", f"$ {self.precio}")
-        tabla.add_row("Numero de patas", str(self.num_patas))
-        tabla.add_row("Precio final", f"$ {self.calcular_precio_final():.2f}")
+        tabla.add_row("Material:", self.material)
+        tabla.add_row("Precio base:", f"$ {self.precio}")
+        tabla.add_row("Descuento aplicado:", f"{self.descuento}%")
+        tabla.add_row("Numero de patas:", str(self.num_patas))
+        tabla.add_row("Precio final:", f"$ {self.calcular_precio_final():.2f}")
 
         # Renderizado final de la tabla
         consola.print(tabla)
