@@ -26,9 +26,21 @@ inventario.agregar_mueble(silla)
 inventario.agregar_mueble(mesa)
 inventario.agregar_mueble(armario)
 
-# Mostrara el inventario existente
-print("Inventario de muebles:")
-inventario.mostrar_inventario() # llamara al metodo 'mostrar_inventario()' de 'inventario.py' para traer todos los muebles almacenados
+# Serializar el inventario a JSON
+# Este método convierte el inventario y todos los 'muebles' dentro de él en una cadena JSON.
+json_str = inventario.serializar()
+print("Inventario serializado:")
+print(json_str)
+
+# Deserializar el JSON para reconstruir el inventario
+# Este método recibe la cadena JSON json_str y la convierte de nuevo en una instancia de la clase Inventario, cargando los muebles desde los datos contenidos en el JSON.
+nuevo_inventario = Inventario.deserializar(json_str)
+print("\nInventario deserializado:")
+nuevo_inventario.mostrar_inventario()
+
+# # Mostrara el inventario existente
+# print("Inventario de muebles:")
+# inventario.mostrar_inventario() # llamara al metodo 'mostrar_inventario()' de 'inventario.py' para traer todos los muebles almacenados
 
 # Imprime datos de los objetos en cadena de texto
 # print(silla)

@@ -48,5 +48,28 @@ Precio final: $ {self.calcular_precio_final():.2f}"""
         # Renderizado final de la tabla
         consola.print(tabla)
         
+    # 'to_dict(self)' Convierte los atributos de la instancia de un objeto en un diccionario, para representar el objeto de una manera mas simple
+    def to_dict(self):
+        return {
+            "tipo": "Mesa", # Identificador del tipo de mueble para la deserialización
+            "material": self.material,
+            "precio": self.precio,
+            "descuento": self.descuento,
+            "ancho": self.ancho,
+            "largo": self.largo
+        }
+        
+    # Método de clase para crear una instancia desde un diccionario
+    # El diccionario (data) contiene los datos necesarios para reconstruir el objeto
+    @classmethod
+    def from_dict(cls, data):
+        instancia = cls(data["material"], data["precio"], data["ancho"], data["largo"])
+        
+        # Se aplicara el descuento si existe en los datos
+        if "descuento" in data:
+            instancia.aplicar_descuento(data["descuento"])
+        
+        return instancia
+        
         
             
