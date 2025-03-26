@@ -22,7 +22,8 @@ class Silla(Mueble):
 
     # Metodo abstracto especifico para la clase Silla
     def calcular_precio_final(self):
-        return self.precio * 1.32 # Precio base aumentado un 32%
+        precio_aumentado = self.precio * 1.32 # Precio base aumentado un 32%
+        return precio_aumentado * (1 - self.descuento / 100) # Descuento aplicado
 
     # Obtiene la informacion de la clase padre 'Mueble', los atributos especificos de la subclase 'Silla' y el resultado del metodo abstracto y lo convierte en un formato string legible
     def __str__(self):

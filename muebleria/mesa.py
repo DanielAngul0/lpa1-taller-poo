@@ -19,7 +19,8 @@ class Mesa(Mueble):
 
     # Metodo abstracto especifico para la clase Mesa
     def calcular_precio_final(self):
-        return self.precio * 1.2 # Precio base aumentado un 20%
+        precio_aumentado = self.precio * 1.2 # Precio base aumentado un 20%
+        return precio_aumentado * (1 - self.descuento / 100) # Descuento aplicado
     
     # Obtiene la informacion de la clase padre 'Mueble', los atributos especificos de la subclase 'Mesa' y el resultado del metodo abstracto y lo convierte en un formato string legible
     def __str__(self):

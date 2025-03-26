@@ -18,7 +18,8 @@ class Armario(Mueble):
 
     # Metodo abstracto especifico para la clase Armario
     def calcular_precio_final(self):
-        return self.precio * 1.1 # Precio base aumentado un 10%
+        precio_aumentado = self.precio * 1.1 # Precio base aumentado un 10%
+        return precio_aumentado * (1 - self.descuento / 100) # Descuento aplicado
     
     # Obtiene la informacion de la clase padre 'Mueble', los atributos especificos de la subclase 'Armario' y el resultado del metodo abstracto y lo convierte en un formato string legible
     def __str__(self):
