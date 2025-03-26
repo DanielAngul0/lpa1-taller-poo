@@ -1,11 +1,33 @@
-import json # Importamos JSON para trabajar en su formato
+import json  # Importamos JSON para trabajar en su formato
+import importlib
 
 # Clase para gestionar el inventario de la mueblería
 class Inventario:
     def __init__(self):
         # Se crea una lista vacia en la que se guardara cada subclase de 'Mueble' como silla, mesa, armario
         # Esta lista se actualizara cada vez que se agregue un nuevo mueble
-        self.muebles = [] 
+        self.muebles = []
+
+    def debug(self):
+        print(f"Inventario en memoria: {self.muebles}")
+
+    def cargar_desde_json(self, archivo="inventario.json"):
+        """Carga los muebles desde un archivo JSON y los agrega al inventario"""
+        try:
+            with open(archivo, "r") as f:
+                datos = json.load(f)
+                self.muebles = [self.deserializar_mueble(m) for m in datos]
+        except FileNotFoundError:
+            self.muebles = []
+        except json.JSONDecodeError:
+            print("Error: El archivo JSON no está bien formado.")
+
+    def deserializar_mueble(self, mueble_data):
+        """Reconstruye un mueble a partir de su representación en diccionario."""
+        tipo = mueble_data.get("tipo")
+        modulo = importlib.import_module(f"muebleria.{tipo.lower()}")
+        clase = getattr(modulo, tipo)
+        return clase.from_dict(mueble_data)
 
     def agregar_mueble(self, mueble):
         # Tomara las instancias de objetos de las subclases de 'Mueble' y las añadira a la lista usando el metodo 'append'
@@ -26,18 +48,16 @@ class Inventario:
             for mueble in self.muebles:
                 print(mueble)
                 print("-" * 40)
-                
-    # Este método convierte una lista de objetos 'mueble' en una cadena JSON            
+
+    # Este método convierte una lista de objetos 'mueble' en una cadena JSON  
     def serializar(self):
-        muebles_list = [mueble.to_dict() for mueble in self.muebles] # Recorre cada objeto en la lista 'muebles' y llama al método 'to_dict()' de cada uno, este metodo convierte cada objeto en un diccionario
-        return json.dumps(muebles_list, indent=4) # Convierte la lista del diccionario en un formato JSON
+        muebles_list = [mueble.to_dict() for mueble in self.muebles]  # Recorre cada objeto en la lista 'muebles' y llama al método 'to_dict()' de cada uno, este metodo convierte cada objeto en un diccionario
+        return json.dumps(muebles_list, indent=4)  # Convierte la lista del diccionario en un formato JSON
     
-    # Este método es el opuesto de serializar: convierte una cadena JSON en una instancia de la clase Inventario con los muebles cargados desde el JSON            
+    # Este método es el opuesto de serializar: convierte una cadena JSON en una instancia de la clase Inventario con los muebles cargados desde el JSON
     @staticmethod
     def deserializar(json_str):
         #Deserializa la cadena JSON y devuelve una instancia de Inventario con los muebles cargados
-        import importlib
-
         # Convierte la cadena JSON 'json_st' de nuevo en una lista de diccionarios. Cada diccionario representa un mueble con sus atributos.
         muebles_list = json.loads(json_str)
         inventario = Inventario()

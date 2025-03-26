@@ -1,0 +1,24 @@
+[
+    {
+        "tipo": "Silla",
+        "material": "Madera",
+        "precio": 500000.0,
+        "descuento": 0,
+        "num_patas": 4
+    },
+    {
+        "tipo": "Mesa",
+        "material": "Vidrio",
+        "precio": 700000.0,
+        "descuento": 0,
+        "ancho": 120,
+        "largo": 80
+    },
+    {
+        "tipo": "Armario",
+        "material": "Metal",
+        "precio": 800000.0,
+        "descuento": 0,
+        "num_puertas": 2
+    }
+]
