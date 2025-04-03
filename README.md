@@ -1,6 +1,6 @@
 # Sistema de Gestión de Mueblería
 
-Este proyecto es un taller práctico para aplicar los conceptos de Programación Orientada a Objetos (POO) en Python.
+🚀 Este proyecto es un taller práctico para aplicar los conceptos de Programación Orientada a Objetos (POO) en Python.
 
 ## Instrucciones
 
@@ -32,3 +32,48 @@ Este proyecto es un taller práctico para aplicar los conceptos de Programación
 * Utilizar Git para gestionar los cambios y realizar commits atómicos.
 * Mantener el `README.md` actualizado y documentar el código cuando sea necesario.
 
+
+## 🛠️ Instalación
+
+1. Clona el repositorio:
+```bash
+git clone https://github.com/DanielAngul0/lpa1-taller-poo.git
+cd lpa1-taller-poo
+```
+2. Instalar requisitos⚙️
+
+- Python 3.8+
+- Dependencias:
+```bash
+# Dependencias principales
+# rich => Para salida de consola estilizada
+# pytest => Para pruebas unitarias
+pip install pytest rich
+```
+---
+
+## 🖥️ Ejecución
+
+Para ejecutar la aplicación, simplemente ejecuta:
+
+1. Ejecutar el proyecto⚙️
+```bash
+python main.py
+```
+
+---
+
+## 🧪 Pruebas Unitarias
+
+El proyecto incluye pruebas unitarias utilizando pytest. Para ejecutar las pruebas, desde la raíz del proyecto ejecuta:
+
+1. Ejecutar el proyecto
+```bash
+pytest
+```
+
+## 🤝 Contribución
+Si deseas contribuir a este proyecto, realiza un fork del repositorio, haz tus cambios y envía un pull request.
+
+## 📄 Licencia
+Este proyecto está licenciado bajo la Licencia MIT
